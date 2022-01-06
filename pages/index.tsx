@@ -6,27 +6,60 @@ import TypingText from '../components/typing-text';
 import Category from '../components/category';
 import Product from '../components/product';
 import Footer from '../components/footer';
+import {getHomePage} from '../config/services';
+import {toast} from 'react-toastify';
+import Spinner from '../components/spinner';
 
 const Home = () => {
+  const [loading, setLoading] = React.useState(false);
+  const [banner, setBanner] = React.useState([]) as any;
+  const [category, setCategory] = React.useState([]) as any;
+  const [productNew, setProductNew] = React.useState([]) as any;
+  const [productPopular, setProductPopular] = React.useState([]) as any;
+
   React.useEffect(() => {
+    initData();
     AOS.init();
 
     return () => {};
   }, []);
 
+  const initData = async () => {
+    setLoading(true);
+
+    await getHomePage()
+      .then((res) => {
+        if (res.error) {
+          toast.error(res.message);
+        } else {
+          setBanner(res.data.banner);
+          setCategory(res.data.category);
+          setProductNew(res.data.productNew);
+          setProductPopular(res.data.productPopular);
+        }
+      })
+      .finally(() => setLoading(false));
+  };
+
   return (
     <>
-      <Navbar active={'beranda'} />
+      <Spinner enabled={loading} />
 
-      <div className="page-content page-home">
-        <Carousel />
-        <TypingText />
-        <Category title={'Kategori'} />
-        <Product title={'Produk Baru'} />
-        <Product title={'Produk Terlaris'} />
-      </div>
+      {!loading && (
+        <>
+          <Navbar active={'beranda'} />
 
-      <Footer />
+          <div className="page-content page-home">
+            <Carousel banner={banner} />
+            <TypingText />
+            <Category title={'Kategori'} category={category} />
+            <Product title={'Produk Baru'} product={productNew} />
+            <Product title={'Produk Terlaris'} product={productPopular} />
+          </div>
+
+          <Footer />
+        </>
+      )}
     </>
   );
 };
