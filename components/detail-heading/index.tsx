@@ -4,10 +4,11 @@ interface Props {
   title: string;
   category: string;
   price: number;
+  link: string;
 }
 
 const DetailHeading = (props: Props) => {
-  const {title, category, price} = props;
+  const {title, category, price, link} = props;
 
   return (
     <section className="store-heading">
@@ -27,7 +28,16 @@ const DetailHeading = (props: Props) => {
               prefix={'Rp '}
             />
           </div>
+          <div className="col-lg-3">
+            <a
+              className="btn btn-success btn-sm nav-link mt-3 mb-2 text-white"
+              target="_blank"
+              href={link}>
+              Lihat Produk
+            </a>
+          </div>
         </div>
+        <hr />
       </div>
     </section>
   );

@@ -10,6 +10,8 @@ interface Props {
 const CardCategory = (props: Props) => {
   const {href = '/', imgCategory, title, aosDelay} = props;
 
+  const URL_IMAGE = process.env.NEXT_PUBLIC_IMG;
+
   return (
     <div
       className="col-6 col-md-3 col-lg-3"
@@ -19,7 +21,7 @@ const CardCategory = (props: Props) => {
         <a className="component-categories d-block">
           <div className="categories-image">
             <img
-              src={imgCategory}
+              src={`${URL_IMAGE}/${imgCategory}`}
               alt="Gadgets Categories"
               className="w-100"
               style={{borderRadius: '100%'}}

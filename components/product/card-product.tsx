@@ -12,6 +12,8 @@ interface Props {
 const CardProduct = (props: Props) => {
   const {aosDelay, href = '/', thumbnail, title, price} = props;
 
+  const URL_IMAGE = process.env.NEXT_PUBLIC_IMG;
+
   return (
     <div
       className="col-6 col-md-4 col-lg-3"
@@ -23,7 +25,7 @@ const CardProduct = (props: Props) => {
             <div
               className="products-image"
               style={{
-                backgroundImage: `url(${thumbnail})`,
+                backgroundImage: `url(${URL_IMAGE}/${thumbnail})`,
               }}></div>
           </div>
           <div className="products-text">{title}</div>

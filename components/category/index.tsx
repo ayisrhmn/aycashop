@@ -2,37 +2,11 @@ import CardCategory from './card-category';
 
 interface Props {
   title: string;
+  category: any;
 }
 
 const Category = (props: Props) => {
-  const {title} = props;
-
-  const listCategory = [
-    {
-      href: '/kategori/t-shirt',
-      aosDelay: '100',
-      imgCategory: '/img/category/ct-1.jpg',
-      title: 'T-Shirt',
-    },
-    {
-      href: '/kategori/crewneck',
-      aosDelay: '200',
-      imgCategory: '/img/category/ct-2.jpg',
-      title: 'Crewneck',
-    },
-    {
-      href: '/kategori/thrift',
-      aosDelay: '300',
-      imgCategory: '/img/category/ct-3.jpg',
-      title: 'Thrift',
-    },
-    {
-      href: '/kategori/food',
-      aosDelay: '400',
-      imgCategory: '/img/category/ct-4.jpg',
-      title: 'Food',
-    },
-  ];
+  const {title, category} = props;
 
   return (
     <section className="store-trend-categories mb-5">
@@ -43,13 +17,13 @@ const Category = (props: Props) => {
           </div>
         </div>
         <div className="row">
-          {listCategory.map((category: any, i: number) => (
+          {category?.map((item: any) => (
             <CardCategory
-              key={i}
-              aosDelay={category.aosDelay}
-              href={category.href}
-              imgCategory={category.imgCategory}
-              title={category.title}
+              key={item._id}
+              aosDelay={'200'}
+              href={`/kategori/${item._id}`}
+              imgCategory={item.filenameImage}
+              title={item.name}
             />
           ))}
         </div>
