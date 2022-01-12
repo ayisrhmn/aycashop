@@ -5450,8 +5450,8 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #33BFA0;
+  border-color: #33BFA0;
 }
 
 .page-item.disabled .page-link {
@@ -11411,14 +11411,14 @@ footer ul li a:hover {
 
 .component-products .products-text {
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
   color: #0c0d36;
   margin-top: 12px;
 }
 
 .component-products .products-price {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   color: #ff7158;
 }
 

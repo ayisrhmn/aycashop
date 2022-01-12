@@ -7,11 +7,16 @@ import Product from '../../components/product';
 import {getCategoryPage} from '../../config/services';
 import {toast} from 'react-toastify';
 import Spinner from '../../components/spinner';
+import Pagination from '../../components/pagination';
 
 const AllKategori = () => {
   const [loading, setLoading] = React.useState(false);
   const [category, setCategory] = React.useState([]) as any;
   const [product, setProduct] = React.useState([]) as any;
+  const [currItems, setCurrItems] = React.useState([]) as any;
+  const [pageCount, setPageCount] = React.useState(0);
+  const [itemOffset, setItemOffset] = React.useState(0);
+  const [itemsPerPage, setItemsPerPage] = React.useState(12);
 
   React.useEffect(() => {
     initData();
@@ -21,6 +26,7 @@ const AllKategori = () => {
   }, []);
 
   const initData = async () => {
+    setItemsPerPage(12);
     setLoading(true);
 
     await getCategoryPage()
@@ -35,6 +41,22 @@ const AllKategori = () => {
       .finally(() => setLoading(false));
   };
 
+  React.useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrItems(product.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(product.length / itemsPerPage));
+
+    return () => {};
+  }, [itemOffset, itemsPerPage, product]);
+
+  const handlePageClick = (e: any) => {
+    const newOffset = (e.selected * itemsPerPage) % product.length;
+    console.log(
+      `User requested page number ${e.selected}, which is offset ${newOffset}`,
+    );
+    setItemOffset(newOffset);
+  };
+
   return (
     <>
       <Spinner enabled={loading} />
@@ -45,7 +67,8 @@ const AllKategori = () => {
 
           <div className="page-content page-categories">
             <Category title={'Semua Kategori'} category={category} />
-            <Product title={'Semua Produk'} product={product} />
+            <Product title={'Semua Produk'} product={currItems} />
+            <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
           </div>
 
           <Footer />

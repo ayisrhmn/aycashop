@@ -16,7 +16,7 @@ const CardProduct = (props: Props) => {
 
   return (
     <div
-      className="col-6 col-md-4 col-lg-3"
+      className="col-6 col-md-4 col-lg-2"
       data-aos="fade-up"
       data-aos-delay={aosDelay}>
       <Link href={href}>
@@ -28,7 +28,9 @@ const CardProduct = (props: Props) => {
                 backgroundImage: `url(${URL_IMAGE}/${thumbnail})`,
               }}></div>
           </div>
-          <div className="products-text">{title}</div>
+          <div className="products-text">
+            {title.length > 20 ? `${title.substring(0, 15)}...` : title}
+          </div>
           <NumberFormat
             value={price}
             className={'products-price'}

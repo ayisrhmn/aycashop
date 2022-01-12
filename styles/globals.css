@@ -30,3 +30,9 @@
 .store-description span {
   font-family: "Poppins", sans-serif !important;
 }
+
+.pagination-wrapper {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}

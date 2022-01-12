@@ -53,8 +53,8 @@ const Home = () => {
             <Carousel banner={banner} />
             <TypingText />
             <Category title={'Kategori'} category={category} />
-            <Product title={'Produk Baru'} product={productNew} />
             <Product title={'Produk Terlaris'} product={productPopular} />
+            <Product title={'Produk Baru'} product={productNew} />
           </div>
 
           <Footer />
