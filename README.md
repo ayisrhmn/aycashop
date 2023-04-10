@@ -16,3 +16,7 @@ Repo backend
 <a href="https://aycashop-id.vercel.app/">
   <p>Aycashop - Paradise for Women</p>
 </a>
+
+## Author
+
+Muhammad Fariz Rahman
